@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * Implements decedent search functionality using the ABMC API
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function d7_react_demo_menu() {
+  $items['react-demo-page'] = array(
+    'title' => 'React Application Demo',
+    'page callback' => '_drupal7_react_app_demo',
+    'access arguments' => [
+      'access content',
+    ],
+  );
+  return $items;
+}
+
+function _drupal7_react_app_demo() {
+  $module_path = drupal_get_path('module', 'd7_react_demo');
+  return [
+     'content' => [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => [
+        'id' => [
+          'application-container',
+        ],
+      ],
+      '#attached' => [
+        'js' => [
+          [
+            'data' => $module_path . '/js/react/react.production.min.js',
+            'type' => 'file',
+            'scope' => 'footer',
+          ],
+          [
+            'data' => $module_path . '/js/react/react-dom.production.min.js',
+            'type' => 'file',
+            'scope' => 'footer',
+          ],
+          [
+            'data' => $module_path . '/js/application.js',
+            'type' => 'file',
+            'scope' => 'footer',
+          ],
+        ],
+      ],
+    ],
+  ];
+}

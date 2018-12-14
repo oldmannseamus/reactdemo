@@ -1,0 +1,3 @@
+name = React binding demonstration.
+description = Binds a simple react module to a page.
+core = 7.x
